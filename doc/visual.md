@@ -40,8 +40,9 @@
 ## 6. Characters, environments, and assets
 
 - 玩家头像为产品模式主内容；`?avatar_url` 可覆盖用于测试。
-- 无玩家头像或纹理跨域失败时，使用随包发布的发布者头像
-  `public/publisher-avatar.png`，来源为 `https://github.com/yinxinghuan.png`。
+- 无玩家头像或纹理跨域失败时，使用用户提供的 AlterU 默认头像
+  `public/alteru-default-avatar.jpg`。平台内用户名仍保持当前 AlterU 用户；
+  平台外预览文字为 `AlterU`，GitHub 身份只保留于源码署名。
 - `?baseline=1` 使用 `public/upstream-original.jpg`。
 - 头像采用居中 cover 裁切；不把 HDR、normal、roughness 或 LUT 当头像入口。
 
@@ -82,4 +83,3 @@
 - 完成：2.43 秒内自动回到完整状态。
 - 窄屏：320×568 不裁掉标题、姓名或脸部核心区域。
 - 视觉 QA：要求第一次和修复后的同状态截图，平均分至少 4，无 P0/P1。
-

@@ -69,7 +69,7 @@ let ghostTimer = 0;
 let resizeTimer = 0;
 let restoreSoundPlayed = false;
 let audioContext = null;
-let identitySource = 'publisher-fallback';
+let identitySource = 'alteru-default';
 
 function absolutePublicUrl(path) {
   return new URL(path, document.baseURI).href;
@@ -419,20 +419,23 @@ async function resolveIdentity() {
   const previewAvatar = search.get('avatar_url');
   const previewName = search.get('user_name');
   let profile = null;
-  if (!previewAvatar || !previewName) {
+  if (isInAigram && !previewName) {
+    profile = await readPlayerProfile();
+    if (!profile?.user_name) {
+      throw new Error('AlterU profile did not return user_name');
+    }
+  } else if (isInAigram && !previewAvatar) {
     try {
       profile = await readPlayerProfile();
     } catch (error) {
-      console.warn('Fracture Portrait profile fallback:', error);
+      console.warn('Fracture Portrait avatar fallback:', error);
     }
   }
 
   const avatarUrl = previewAvatar || profile?.head_url || null;
   const userName = previewName
     || profile?.user_name
-    || profile?.username
-    || profile?.name
-    || 'yinxinghuan';
+    || 'AlterU';
 
   if (previewAvatar) identitySource = 'preview-avatar';
   else if (profile?.head_url) identitySource = 'player-avatar';
@@ -448,8 +451,8 @@ async function loadIdentityImage(avatarUrl) {
       console.warn('Fracture Portrait avatar image fallback:', error);
     }
   }
-  identitySource = 'publisher-fallback';
-  return loadImage(absolutePublicUrl('./publisher-avatar.png'));
+  identitySource = 'alteru-default';
+  return loadImage(absolutePublicUrl('./alteru-default-avatar.jpg'));
 }
 
 function showError(error) {

@@ -21,7 +21,8 @@ npm run build
 - `?avatar_url=<public HTTPS image>`：调试头像覆盖。
 - `?user_name=<name>`：调试用户名覆盖。
 - Aigram 内默认读取当前玩家资料。
-- 缺失或跨域失败时回退到项目发布者 `yinxinghuan` 的随包头像。
+- 缺失或跨域失败时只回退到用户提供的 AlterU 默认头像；平台内用户名始终来自当前 AlterU 用户，
+  平台外预览文字为 `AlterU`。
 - `?baseline=1`：查看固定的原作视觉基线。
 
 完整第三方许可见 `public/THIRD_PARTY_NOTICES.txt`。
