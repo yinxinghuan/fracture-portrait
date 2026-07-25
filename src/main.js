@@ -421,8 +421,8 @@ async function resolveIdentity() {
   let profile = null;
   if (isInAigram && !previewName) {
     profile = await readPlayerProfile();
-    if (!profile?.user_name) {
-      throw new Error('AlterU profile did not return user_name');
+    if (!profile?.name && !profile?.user_name) {
+      throw new Error('AlterU profile did not return name');
     }
   } else if (isInAigram && !previewAvatar) {
     try {
@@ -434,6 +434,7 @@ async function resolveIdentity() {
 
   const avatarUrl = previewAvatar || profile?.head_url || null;
   const userName = previewName
+    || profile?.name
     || profile?.user_name
     || 'AlterU';
 
