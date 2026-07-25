@@ -1,0 +1,12 @@
+{
+  "endpoint": "https://chat.aiwaves.tech/aigram/api/gen-image",
+  "origin": "https://aigram.app",
+  "request": "_production/poster-request-v2.json",
+  "response": "_production/poster-response-v2.json",
+  "source": "_production/poster-source-v2.webp",
+  "source_url": "https://cdn.aiwaves.tech/prod/telegram/avatar/0/1784959912771515.webp",
+  "composition": "Cropped only the generated mockup margin, added a dark raster veil and title typography, then exported PNG.",
+  "rejected": [
+    "_production/poster-source.webp"
+  ]
+}
